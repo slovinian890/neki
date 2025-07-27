@@ -6,7 +6,6 @@ COPY ../style.css /usr/share/nginx/html/
 COPY ../script.js /usr/share/nginx/html/
 COPY ../sitemap.xml /usr/share/nginx/html/
 COPY ../robots.txt /usr/share/nginx/html/
-COPY ../assets/ /usr/share/nginx/html/assets/
 
 # Copy custom nginx configuration
 COPY docker/nginx.conf /etc/nginx/nginx.conf
