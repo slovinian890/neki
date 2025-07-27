@@ -1,0 +1,581 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #2a003f; /* Ubuntu-style */
+  color: #f2f2f2;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Terminal Section (2/3 width) */
+.terminal-section {
+  width: 66.67%;
+  height: 100vh;
+  background-color: #2a003f;
+  border-right: 3px solid #00ff88;
+  position: relative;
+}
+
+.terminal-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(90deg, #00ff88, #00cc6a, #00ff88);
+  opacity: 0.1;
+}
+
+#terminal {
+  padding: 40px;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 20% 20%, rgba(42, 0, 63, 0.8) 0%, rgba(42, 0, 63, 1) 100%);
+}
+
+#output {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: 8px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#output::-webkit-scrollbar {
+  width: 8px;
+}
+
+#output::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+#output::-webkit-scrollbar-thumb {
+  background: #00ff88;
+  border-radius: 4px;
+}
+
+#output::-webkit-scrollbar-thumb:hover {
+  background: #00cc6a;
+}
+
+#output a {
+  color: #7fff00;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+#output a:hover {
+  color: #00ff88;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+}
+
+.cmd {
+  color: #00ff88;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+}
+
+.ascii-title {
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.input-line {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+}
+
+.prompt {
+  color: #00ff88;
+  margin-right: 10px;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+}
+
+input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font: inherit;
+  outline: none;
+  width: 100%;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.output-line {
+  white-space: pre-wrap;
+  margin: 4px 0;
+  padding: 2px 0;
+  border-left: 2px solid transparent;
+  padding-left: 5px;
+  transition: border-left-color 0.3s ease;
+}
+
+.output-line:hover {
+  border-left-color: rgba(0, 255, 136, 0.3);
+}
+
+.output-line.prompt {
+  color: #00ff88;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Profile Section (1/3 width) */
+.profile-section {
+  width: 33.33%;
+  height: 100vh;
+  background-color: #2a003f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+  border-left: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.profile-content {
+  text-align: center;
+  max-width: 100%;
+}
+
+.profile-picture {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 255, 136, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
+}
+
+.profile-picture pre {
+  color: #00ff88;
+  font-size: 8px;
+  line-height: 1.1;
+  margin: 0;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+  font-family: 'Courier New', monospace;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.signature {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.signature pre {
+  color: #00ff88;
+  font-size: 8px;
+  line-height: 1.2;
+  margin: 0;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+  font-family: 'Courier New', monospace;
+  white-space: pre;
+  overflow: hidden;
+  animation: glow 2s ease-in-out infinite alternate;
+  text-align: center;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+  }
+  to {
+    text-shadow: 0 0 12px rgba(0, 255, 136, 0.8), 0 0 20px rgba(0, 255, 136, 0.3);
+  }
+}
+
+.profile-info h2 {
+  color: #ffffff;
+  font-size: 2.5em;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.profile-info .title {
+  color: #00ff88;
+  font-size: 1.2em;
+  margin: 0 0 20px 0;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+}
+
+.profile-info .bio {
+  color: #cccccc;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 0 0 30px 0;
+  text-align: justify;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.skill-symbol {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 255, 136, 0.1);
+  border: 2px solid rgba(0, 255, 136, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.skill-symbol:hover {
+  background: rgba(0, 255, 136, 0.2);
+  border-color: #00ff88;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+}
+
+.skill-symbol::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff88;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.skill-symbol:hover::after {
+  opacity: 1;
+}
+
+/* Mobile command buttons */
+.mobile-commands {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: 8px;
+}
+
+.mobile-command-btn {
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #00ff88;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-command-btn:active {
+  background: rgba(0, 255, 136, 0.2);
+  border-color: #00ff88;
+  transform: scale(0.95);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    overflow: auto;
+  }
+
+  .mobile-commands {
+    display: flex;
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .terminal-section,
+  .profile-section {
+    width: 100%;
+    height: auto;
+    min-height: 50vh;
+  }
+
+  .terminal-section {
+    border-right: none;
+    border-bottom: 3px solid #00ff88;
+  }
+
+  .profile-section {
+    border-left: none;
+    padding: 20px;
+  }
+
+  #terminal {
+    padding: 20px;
+    height: auto;
+    min-height: 50vh;
+  }
+
+  #output {
+    padding: 15px;
+    margin-bottom: 15px;
+    max-height: 40vh;
+  }
+
+  .ascii-title {
+    font-size: 8px;
+    line-height: 1.1;
+    margin-bottom: 15px;
+  }
+
+  .input-line {
+    padding: 10px 15px;
+    margin-top: 10px;
+  }
+
+  .prompt {
+    font-size: 12px;
+    margin-right: 8px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  .profile-picture {
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+
+  .profile-picture pre {
+    font-size: 6px;
+    line-height: 1.0;
+  }
+
+  .signature pre {
+    font-size: 6px;
+    line-height: 1.1;
+  }
+
+  .profile-info .bio {
+    font-size: 0.85em;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+    padding: 12px;
+  }
+
+  .skills {
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .skill-symbol {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .skill-symbol::after {
+    font-size: 10px;
+    bottom: -25px;
+    padding: 3px 8px;
+  }
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+
+  #terminal {
+    padding: 15px;
+  }
+
+  #output {
+    padding: 10px;
+    max-height: 35vh;
+  }
+
+  .ascii-title {
+    font-size: 6px;
+    line-height: 1.0;
+  }
+
+  .input-line {
+    padding: 8px 12px;
+  }
+
+  .prompt {
+    font-size: 10px;
+    margin-right: 6px;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  .profile-section {
+    padding: 15px;
+  }
+
+  .profile-picture {
+    padding: 10px;
+  }
+
+  .profile-picture pre {
+    font-size: 5px;
+  }
+
+  .signature pre {
+    font-size: 5px;
+  }
+
+  .profile-info .bio {
+    font-size: 0.8em;
+    padding: 10px;
+  }
+
+  .skills {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .skill-symbol {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .skill-symbol::after {
+    font-size: 9px;
+    bottom: -22px;
+    padding: 2px 6px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .container {
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .terminal-section,
+  .profile-section {
+    width: 50%;
+    height: 100vh;
+  }
+
+  .terminal-section {
+    border-right: 3px solid #00ff88;
+    border-bottom: none;
+  }
+
+  .profile-section {
+    border-left: 1px solid rgba(0, 255, 136, 0.2);
+    padding: 20px;
+  }
+
+  #terminal {
+    padding: 15px;
+    height: 100%;
+  }
+
+  #output {
+    max-height: 60vh;
+  }
+
+  .ascii-title {
+    font-size: 7px;
+  }
+
+  .profile-picture pre {
+    font-size: 6px;
+  }
+
+  .signature pre {
+    font-size: 6px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .skill-symbol:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .skill-symbol:active {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: #00ff88;
+    transform: scale(0.95);
+  }
+
+  .skill-symbol::after {
+    display: none;
+  }
+
+  /* Add touch-friendly tooltips */
+  .skill-symbol[data-tooltip]:active::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: #00ff88;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+  }
+}
+  
