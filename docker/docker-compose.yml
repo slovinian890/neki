@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  filipsinjur-web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: filipsinjur-web
+    restart: unless-stopped
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      # Main domain routing
+      - "traefik.http.routers.filipsinjur-web.rule=Host(`filipsinjur.com`) || Host(`www.filipsinjur.com`)"
+      - "traefik.http.routers.filipsinjur-web.entrypoints=websecure"
+      - "traefik.http.routers.filipsinjur-web.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.filipsinjur-web.middlewares=security-headers@file,compress@file,filipsinjur-www-redirect"
+      - "traefik.http.services.filipsinjur-web.loadbalancer.server.port=80"
+      
+      # WWW to non-WWW redirect
+      - "traefik.http.middlewares.filipsinjur-www-redirect.redirectregex.regex=^https://www\\.filipsinjur\\.com/(.*)"
+      - "traefik.http.middlewares.filipsinjur-www-redirect.redirectregex.replacement=https://filipsinjur.com/$${1}"
+      - "traefik.http.middlewares.filipsinjur-www-redirect.redirectregex.permanent=true"
+
+networks:
+  traefik:
+    external: true 
