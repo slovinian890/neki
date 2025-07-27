@@ -1,0 +1,9 @@
+.git
+.gitignore
+README.md
+*.md
+.DS_Store
+Thumbs.db
+websites/
+deploy.sh
+docker-compose.traefik.yml 
