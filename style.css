@@ -322,8 +322,8 @@ input {
   transform: scale(0.95);
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
+/* Responsive design for tablet and mobile screens */
+@media (max-width: 1200px) {
   body {
     font-size: 14px;
     overflow: auto;
@@ -334,7 +334,7 @@ input {
   }
 
   .container {
-    flex-direction: column;
+    flex-direction: column-reverse;
     height: auto;
     min-height: 100vh;
   }
@@ -348,7 +348,7 @@ input {
 
   .terminal-section {
     border-right: none;
-    border-bottom: 3px solid #00ff88;
+    border-top: 3px solid #00ff88;
   }
 
   .profile-section {
@@ -500,10 +500,10 @@ input {
   }
 }
 
-/* Landscape orientation on mobile */
-@media (max-width: 768px) and (orientation: landscape) {
+/* Landscape orientation on tablet and mobile */
+@media (max-width: 1200px) and (orientation: landscape) {
   .container {
-    flex-direction: row;
+    flex-direction: row-reverse;
     height: 100vh;
   }
 
@@ -514,12 +514,12 @@ input {
   }
 
   .terminal-section {
-    border-right: 3px solid #00ff88;
-    border-bottom: none;
+    border-left: 3px solid #00ff88;
+    border-top: none;
   }
 
   .profile-section {
-    border-left: 1px solid rgba(0, 255, 136, 0.2);
+    border-right: 1px solid rgba(0, 255, 136, 0.2);
     padding: 20px;
   }
 
@@ -616,8 +616,8 @@ a:focus {
   outline-offset: 2px;
 }
 
-/* Improve mobile performance */
-@media (max-width: 768px) {
+/* Improve mobile and tablet performance */
+@media (max-width: 1200px) {
   .profile-picture pre {
     font-size: 0.3em;
     line-height: 0.8;
