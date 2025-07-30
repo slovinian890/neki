@@ -579,3 +579,68 @@ input {
   }
 }
   
+/* SEO and Performance Optimizations */
+
+/* Hidden content for SEO */
+h1, h2, h3 {
+  color: #00ff88;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin: 1em 0 0.5em 0;
+  border-bottom: 1px solid #00ff88;
+  padding-bottom: 0.3em;
+}
+
+h3 {
+  font-size: 1.1em;
+  margin: 0.8em 0 0.4em 0;
+  color: #00cc6a;
+}
+
+/* Improve accessibility and SEO for links */
+a {
+  color: #00ff88;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #00cc6a;
+}
+
+a:focus {
+  outline: 2px solid #00ff88;
+  outline-offset: 2px;
+}
+
+/* Improve mobile performance */
+@media (max-width: 768px) {
+  .profile-picture pre {
+    font-size: 0.3em;
+    line-height: 0.8;
+  }
+  
+  .signature pre {
+    font-size: 0.4em;
+    line-height: 0.9;
+  }
+}
+
+/* Optimize animations for performance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Improve loading performance */
+.profile-picture, .signature {
+  will-change: transform;
+  contain: layout style paint;
+}
+  
